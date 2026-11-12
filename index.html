@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Permis Express - Obtenez votre permis en toute sérénité</title>
+    <style>
+        :root {
+            --primary: #0a2540;
+            --secondary: #00d4b1;
+            --accent: #25d366;
+            --light: #f8fafc;
+            --dark: #1e293b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(10, 37, 64, 0.85), rgba(10, 37, 64, 0.85)), url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1000&auto=format&fit=crop') center/cover;
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: var(--primary);
+        }
+
+        .tarifs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 2px solid transparent;
+            transition: transform 0.3s, border-color 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover, .card.selected {
+            transform: translateY(-5px);
+            border-color: var(--secondary);
+        }
+
+        .card.selected {
+            background-color: #f0fdfa;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .card .price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+
+        .card button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 1rem;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        .steps {
+            background: white;
+            padding: 2.5rem 1rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+        }
+
+        .form-section {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .btn-order {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 1rem;
+            width: 100%;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background 0.3s;
+        }
+
+        .btn-order:hover {
+            background-color: #1ebd56;
+        }
+
+        footer {
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+
+        footer .agency-signature {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.45);
+            margin-top: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .floating-contacts {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 1000;
+        }
+
+        .float-btn {
+            color: white;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .btn-call { background-color: var(--primary); }
+        .btn-sms { background-color: #0284c7; }
+        .btn-wa { background-color: var(--accent); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">PERMIS<span>EXPRESS</span></a>
+        <div>Contact: +33 7 57 75 28 09</div>
+    </header>
+
+    <section class="hero">
+        <h1>Obtenez votre Permis de Conduire Français</h1>
+        <p>Un accompagnement rapide, efficace et en toute sérénité pour toutes vos démarches de permis.</p>
+    </section>
+
+    <div class="container">
+        
+        <h2 class="section-title">Nos Formules & Tarifs</h2>
+        <div class="tarifs-grid">
+            <div class="card" onclick="selectOffer('Permis Voiture', '800 €')">
+                <div class="card-icon">🚗</div>
+                <h3>Permis Voiture</h3>
+                <div class="price">800 €</div>
+                <button type="button">Choisir</button>
+            </div>
+            <div class="card" onclick="selectOffer('Permis Moto', '500 €')">
+                <div class="card-icon">🏍️</div>
+                <h3>Permis Moto</h3>
+                <div class="price">500 €</div>
+                <button type="button">Choisir</button>
+            </div>
+            <div class="card" onclick="selectOffer('Permis Poids Lourds', '1100 €')">
+                <div class="card-icon">🚛</div>
+                <h3>Permis Poids Lourds</h3>
+                <div class="price">1 100 €</div>
+                <button type="button">Choisir</button>
+            </div>
+            <div class="card" onclick="selectOffer('Code de la Route', '200 €')">
+                <div class="card-icon">🚦</div>
+                <h3>Code de la Route</h3>
+                <div class="price">200 €</div>
+                <button type="button">Choisir</button>
+            </div>
+            <div class="card" onclick="selectOffer('Permis Bateau', '500 €')">
+                <div class="card-icon">⛵</div>
+                <h3>Permis Bateau</h3>
+                <div class="price">500 €</div>
+                <button type="button">Choisir</button>
+            </div>
+            <div class="card" onclick="selectOffer('VTC', '500 €')">
+                <div class="card-icon">🚙</div>
+                <h3>VTC</h3>
+                <div class="price">500 €</div>
+                <button type="button">Choisir</button>
+            </div>
+        </div>
+
+        <div class="steps">
+            <h2 class="section-title">Comment Ça Marche ?</h2>
+            <div class="steps-grid">
+                <div>
+                    <div class="step-number">1</div>
+                    <h4>Choix de l'offre</h4>
+                    <p>Sélectionnez la formule souhaitée dans la liste ci-dessus.</p>
+                </div>
+                <div>
+                    <div class="step-number">2</div>
+                    <h4>Vos Informations</h4>
+                    <p>Remplissez le formulaire de contact avec vos coordonnées.</p>
+                </div>
+                <div>
+                    <div class="step-number">3</div>
+                    <h4>Prise en Charge WhatsApp</h4>
+                    <p>Cliquez sur commander pour transmettre le dossier directement à un conseiller.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section" id="formulaire">
+            <h2 class="section-title" style="margin-bottom: 1.5rem;">Formulaire de Commande</h2>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="formule">Formule sélectionnée</label>
+                    <input type="text" id="formule" readonly placeholder="Cliquez sur une offre ci-dessus" required>
+                </div>
+                <div class="form-group">
+                    <label for="nom">Nom & Prénom</label>
+                    <input type="text" id="nom" placeholder="Ex: Jean Dupont" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Numéro Téléphone / WhatsApp</label>
+                    <input type="tel" id="phone" placeholder="Ex: +33 6 12 34 56 78" required>
+                </div>
+                <div class="form-group">
+                    <label for="ville">Ville de résidence en France</label>
+                    <input type="text" id="ville" placeholder="Ex: Paris, Lyon, Marseille..." required>
+                </div>
+                <button type="submit" class="btn-order">
+                    Commander maintenant (WhatsApp)
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- Boutons flottants d'appel, SMS et WhatsApp -->
+    <div class="floating-contacts">
+        <a href="tel:+33757752809" class="float-btn btn-call" title="Appeler le service client">📞</a>
+        <a href="sms:+33757752809" class="float-btn btn-sms" title="Envoyer un SMS">✉️</a>
+        <a href="https://wa.me/33757752809" class="float-btn btn-wa" target="_blank" title="Contact Direct WhatsApp">💬</a>
+    </div>
+
+    <footer>
+        <p>© 2026 Permis Express. Tous droits réservés.</p>
+        <div class="agency-signature">Design & Développement par MR Digital Studio</div>
+    </footer>
+
+    <script>
+        let selectedTarif = '';
+
+        function selectOffer(title, price) {
+            document.getElementById('formule').value = title + ' (' + price + ')';
+            selectedTarif = price;
+            
+            // Defilement fluide vers le formulaire
+            document.getElementById('formulaire').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formule = document.getElementById('formule').value;
+            const nom = document.getElementById('nom').value;
+            const phone = document.getElementById('phone').value;
+            const ville = document.getElementById('ville').value;
+
+            const phoneNumber = "33757752809";
+            
+            const text = `Bonjour Permis Express,\n\nJe souhaite passer une commande pour :\n- *Formule* : ${formule}\n- *Nom & Prénom* : ${nom}\n- *Téléphone* : ${phone}\n- *Ville* : ${ville}\n\nMerci de me prendre en charge pour la suite des démarches !`;
+
+            const encodedMessage = encodeURIComponent(text);
+
+            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+        });
+    </script>
+</body>
+</html>
